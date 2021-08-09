@@ -1,6 +1,18 @@
 #!/bin/bash
 
 
+gitGetJenkinsK8sPods(){
+    K8S_JEKINS_HOME=~/.jenkins
+    K8S_JEKINS_PODS_HOME=${K8S_JEKINS_HOME}/jenkins-kubernetes-pod
+ 
+    [ -d ${K8S_JEKINS_PODS_HOME} ] && rm -rf ${K8S_JEKINS_PODS_HOME}
+    [ ! -d ${K8S_JEKINS_HOME} ] && mkdir -p ${K8S_JEKINS_HOME}
+    cd ${K8S_JEKINS_HOME}
+    git clone https://github.com/karlring-devops/jenkins-kubernetes-pod.git
+
+    cd ${K8S_JEKINS_PODS_HOME}
+    ls -alhtr
+}
 
 
 gitSetupKubeConfig(){
