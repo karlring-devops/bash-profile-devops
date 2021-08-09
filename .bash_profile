@@ -2,6 +2,15 @@
 
 
 
+
+gitSetupKubeConfig(){
+	KUBE_HOME=/home/$USER/.kube
+	[ ! -f ${KUBE_HOME} ] && mkdir -p ${KUBE_HOME}
+	cp -i /etc/kubernetes/admin.conf /home/$USER/.kube/config
+	chown $USER:$USER /home/$USER/.kube/config
+}
+
+
 gitSetupKProfile(){ 
     cd
     [ -f ~/.kprofile/.kprofile ] && rm -rf ~/.kprofile
@@ -17,5 +26,6 @@ gitSetupJProfile(){
     source ~/.jprofile/.jprofile
     }
 
+[ ! -f /home/$USER/.kube   ] && gitSetupKubeConfig
 [ -f ~/.jprofile/.jprofile ] && source ~/.jprofile/.jprofile || gitSetupJProfile
 [ -f ~/.kprofile/.kprofile ] && source ~/.kprofile/.kprofile || gitSetupKProfile
